@@ -88,13 +88,13 @@ public class SumOfSubArrayMinimums907 {
 
         for (int i = 0; i < n; i++) {
             // Distance to previous smaller/equal element (number of choices on left)
-            int left = i - previousSmallestOrEqualElement[i];
+            long left = i - previousSmallestOrEqualElement[i];
 
             // Distance to next smaller element (number of choices on right)
-            int right = (nextSmallestElement[i] != -1) ? nextSmallestElement[i] - i : n - i;
-
+            long right = (nextSmallestElement[i] != -1) ? nextSmallestElement[i] - i : n - i;
+            long contribution = arr[i] * left * right;
             // Contribution of arr[i] to total sum
-            total = (total + ((long) arr[i] * left * right) % MOD) % MOD;
+            total = (total + contribution) % MOD;
         }
 
         return (int) total;
